@@ -8,7 +8,24 @@
 # deactivate
 # pip install requests(외부라이브러리 설치)
 
+    
 import requests
+from bs4 import BeautifulSoup
 
-r = requests.get('https://job.incruit.com/jobdb_info/jobpost.asp?job=2610160000200&src=gsw*www')
-print(r.status_code)
+keyword = "파이썬"
+
+url = f"https://job.incruit.com/jobdb_info/jobpost.asp?job&kw={keyword}"
+
+r = requests.get(url)
+
+soup = BeautifulSoup(r.text, "html.parser")
+
+lis = soup.find_all("li", class_="c_col")
+
+print("검색된 항목 수:", len(lis))
+
+for li in lis:
+    company = li.find("a", class_="cpname")
+    
+    if company is not None:
+        print(company.get_text(strip=True))
