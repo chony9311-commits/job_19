@@ -2,5 +2,18 @@
     <head></head>
     <body>
         <h1>{{ keyword }} 잡서치결과 페이지입니다.</h1>
+
+        {% for job in jobs %}
+        <p>{{ job }}</p>
+        {% endfor %}
+        <table>
+                <thead>
+                    <tr>
+                        <tr></tr>
+                    </tr>
+                </thead>
+                
+                <tbody></tbody>
+        </table>
     </body>
 </html>
